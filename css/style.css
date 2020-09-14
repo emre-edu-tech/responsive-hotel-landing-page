@@ -1,0 +1,909 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* This makes the default 16px size to 10px */
+    /* So 1rem is 10px here */
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* navbar */
+/* sidebar */
+.sidebar {
+    /* below for z-index it is enough to give a value bigger than 0*/
+    z-index: 10;
+    width: 8rem;
+    height: 100%;
+    background-color: #eee;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon {
+    margin-top: 3rem;
+    cursor: pointer;
+}
+
+.menu-icon:hover .line {
+    width: 2.5rem;
+}
+
+.line {
+    height: .2rem;  /* 2px height */
+    width: 2.5rem;  /* 25px width */
+    background-color: #222;
+    margin-bottom: .6rem;
+}
+
+.line-1, .line-3 {
+    transition: all .4s;
+    width: 1.8rem;
+}
+
+.social-icons-list {
+    list-style: none;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.social-link {
+    font-size: 2rem;
+    color: #777;
+    transition: color .3s;
+}
+
+.social-link:hover {
+    color: #deaa86;
+}
+
+.year {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: #555;
+}
+/* end of sidebar */
+/* navigation */
+.navigation {
+    /* margin-left was here for development purposes */
+    /* margin-left: 8rem; */
+    left: -32rem;
+    position: fixed;
+    width: 40rem;
+    height: 100%;
+    background: linear-gradient(to top, rgba(24, 32, 41, 1), rgba(24, 32, 41, .7)), url('../images/nav-bg.jpeg') center no-repeat;
+    background-size: cover;
+    /* display properties */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: left .8s cubic-bezier(1, 0, 0, 1);
+    z-index: 9;
+}
+
+.navigation-header {
+    margin-top: 3rem;
+}
+
+.navigation-heading {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+    color: #deaa86;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.navigation-search {
+    position: relative;
+}
+
+.navigation-search-input {
+    width: 30rem;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 0, 0, .3);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.6rem;
+    color: #deaa86;
+    letter-spacing: .1rem;
+    outline: none;  /* remove default border focus */
+    border: solid .1rem #555;
+    border-radius: 1rem;
+    transition: background-color .3s;
+}
+
+.navigation-search-input:focus {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.navigation-search-btn {
+    border: none;
+    background-color: transparent;
+    color: #deaa86;
+    font-size: 1.7rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+.navigation-search-btn:focus {
+    outline: none;
+}
+
+.navigation-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navigation-item {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.navigation-link {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .3s;
+}
+
+.navigation-link::before {
+    content: '';
+    width: 0;
+    height: .1em;
+    background-color: #deaa86;
+    position: absolute;
+    top: 1rem;
+    left: -4rem;
+}
+
+.navigation-link::after {
+    content: '';
+    width: 0;
+    height: .1em;
+    background-color: #deaa86;
+    position: absolute;
+    top: 1rem;
+    right: -4rem;
+}
+
+/* cubic-bezier() is transition-timing-function */
+/* cubic-bezier(1, 0, 0, 1) starts slow ends fast */
+.navigation-link::before, .navigation-link::after {
+    transition: width .5s cubic-bezier(1, 0, 0, 1);
+} 
+
+.navigation-link:hover {
+    color: #deaa86;
+}
+
+.navigation-link:hover::before, .navigation-link:hover::after {
+    width: 3rem;
+}
+
+.copyright {
+    margin-bottom: 2rem;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* play with input element checked condition */
+/* ~ is general sibling selector */
+.checkbox:checked ~ .navigation {
+    left: 8rem;
+}
+
+/* dealing with the transformation of the hamburger button */
+/* + is adjacent sibling selector */
+.checkbox:checked + .sidebar .line-1 {
+    transform: rotate(-405deg) translate(-5px, 6px);
+    width: 2.5rem;
+}
+
+.checkbox:checked + .sidebar .line-2 {
+    opacity: 0;
+}
+
+.checkbox:checked + .sidebar .line-3 {
+    transform: rotate(405deg) translate(-5px, -6px);
+    width: 2.5rem;
+}
+/* end of navigation */
+/* end of navbar */
+
+/* header */
+.header {
+    margin-left: 8rem;
+    height: 100vh;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .5)), url('../images/header-1.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.brand {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.brand-heading {
+    color: #deaa86;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 400;
+    letter-spacing: .2rem;
+}
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ddd;
+    height: 65rem;
+}
+
+.banner-heading {
+    margin-bottom: 5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 7rem;
+    font-weight: 400;
+    animation: loadingAnimation 2s;
+}
+
+.banner-paragraph {
+    font-size: 3.5rem;
+    margin-bottom: 4rem;
+    font-weight: 300;
+    /* below backwards help us start the animation with .5 seconds delay directly from opacity 0 (backwards helps here) */
+    animation: loadingAnimation 1.5s .5s backwards;
+}
+
+.banner-btn {
+    width: 20rem;
+    padding: 1.2rem 2rem;
+    font-size: 2rem;
+    color: #333;
+    letter-spacing: .1rem;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to right, gold, goldenrod);
+    animation: loadingAnimation 1s 1s backwards;
+}
+
+.banner-btn:hover {
+    background: linear-gradient(to left, gold, goldenrod);
+}
+
+.banner-btn:active {
+    transform: translateY(.2rem);
+}
+
+/* animation of banner content when the page is loaded using keyframes */
+@keyframes loadingAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+/* end of header */
+
+/* about us */
+.about-us {
+    margin-left: 8rem;
+    display: flex;
+    background-color: #ddd;
+    padding: 10rem;
+}
+
+.about-us-content {
+    /* flex grow-shrink-basis */
+    flex-grow: 0;
+    /* flex-shrink property helps responsiveness */
+    flex-shrink: 1;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.about-us-heading {
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #555;
+}
+
+.short-underline {
+    height: .2rem;  /* 2px height */
+    width: 10rem;  /* 25px width */
+    background-color: #b85d1c;
+    margin: 2rem auto 1rem auto;
+}
+
+.long-underline {
+    height: .2rem;  /* 2px height */
+    width: 20rem;  /* 25px width */
+    background-color: #b85d1c;
+    margin-bottom: 2rem;
+}
+
+.about-us-content .subheading {
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+    color: #b85d1c;
+}
+
+.about-us-paragraph {
+    font-size: 1.6rem;
+    text-align: center;
+    font-style: italic;
+    font-weight: 300;
+    margin: 5rem;
+}
+
+.about-us-btn {
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border: solid .1rem #b85d1c;
+    width: 15rem;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #b85d1c;
+    outline: none;
+}
+
+.about-us-btn i {
+    margin-left: .5rem;
+    transition: margin-left .5s;
+}
+
+.about-us-btn:hover i {
+    margin-left: 1.5rem;
+}
+
+.about-us-images {
+    /* take up the remaining space */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 50%;
+    position: relative;
+}
+.image {
+    width: 32rem;
+    position: absolute;
+    /* left top corner of all the images are centered in parent element*/
+    top: 50%;
+    left: 50%;
+    box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, .4);
+    border-radius: .4rem;
+    border: solid .2rem #b85d1c;
+}
+
+.image-1 {
+    transform: translate(-20%, -90%);
+}
+
+.image-2 {
+    transform: translate(-70%, -70%);
+}
+
+.image-3 {
+    transform: translate(-50%, -50%);
+}
+
+.image-4 {
+    transform: translate(-30%, -30%);
+}
+/* end of about us */
+
+/* Common Header element for sections */
+.section-header {
+    text-align: center;
+    color: #b85d1c;
+    padding-bottom: 5rem;
+}
+
+.section-heading {
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+}
+
+.section-header .long-underline {
+    width: 20rem;
+    margin: auto;
+}
+/* end of common header */
+
+/* rooms */
+.rooms {
+    margin-left: 8rem;
+    padding: 7rem 0;
+}
+
+.rooms-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.room-card {
+    width: 60rem;
+    margin: 5rem;
+    background-color: #15141b;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, .3);
+}
+
+.room-img {
+    width: 100%;
+}
+
+.room-card-content {
+    color: #ddd;
+    padding: 2rem;
+}
+
+.room-card-heading {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.room-card-paragraph {
+    color: #777;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.room-price {
+    font-size: 4rem;
+    font-weight: 300;
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.room-card-btn {
+    padding: 1.5rem 1rem;
+    background-color: transparent;
+    border: solid .1rem #b85d1c;
+    width: 15rem;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #b85d1c;
+    outline: none;
+    border-radius: 10rem;
+}
+
+.rooms-btn-wrapper {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.rooms-btn {
+    width: 20rem;
+    padding: 1.5rem 1rem;
+    background-color: transparent;
+    text-transform: uppercase;
+    outline: none;
+    border: solid .2rem #b85d1c;
+    color: #b85d1c;
+    cursor: pointer;
+    box-shadow: 0 1.5rem 6rem rgba(0, 0, 0, .2);
+    transition: all .2s;
+}
+
+.rooms-btn:hover {
+    background-color: #b85d1c;
+    color: #ddd;
+}
+
+.customers {
+    background-color: #15141b;
+    padding: 7rem 0;
+    margin-left: 8rem;
+}
+
+.customers-paragraph {
+    color: #ddd;
+    font-size: 1.8rem;
+    width: 50%;
+    margin: 2rem auto 8rem auto;
+    text-align: center;
+}
+
+.customers-cards-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.customer-card {
+    background-color: #eee;
+    width: 60rem;
+    display: flex;
+}
+
+.customer-image {
+    width: 20rem;
+    margin-left: -1.3rem;
+}
+
+.customer-img-wrapper {
+    margin: auto 0;
+}
+
+.customer-info {
+    padding: 1.4rem 2rem;
+}
+
+.customer-fullname {
+    font-size: 2rem;
+    margin-bottom: 1.6rem;
+    font-weight: 300;
+}
+
+.customer-paragraph-1 {
+    font-style: italic;
+    color: #b85d1c;
+    font-size: 1.2rem;
+    margin-bottom: 1.6rem;
+}
+
+.customer-paragraph-2 {
+    font-style: italic;
+    font-size: 1.3rem;
+}
+/* end of rooms */
+
+/* footer */
+.footer {
+    margin-left: 8rem;
+}
+
+.footer-main {
+    padding: 8rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #1c1c1c;
+}
+
+.footer-heading {
+    color: goldenrod;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+}
+
+.footer-list {
+    list-style: none;
+}
+
+.footer-list-item {
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+}
+
+.footer-list-link {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.contact p {
+    color: #bbb;
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.footer-form {
+    display: flex;
+}
+
+.footer-input {
+    width: 25rem;
+    padding: 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.8rem;
+    outline: none;
+    color: #444;
+}
+
+.footer-form-btn {
+    padding: 1rem;
+    background-color: #b85d1c;
+    border: none;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.gallery {
+    max-width: 45rem;
+}
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-wrapper {
+    width: 12rem;
+    overflow: hidden;   /* added here for the image hover effect */
+    margin: .4rem;
+}
+
+.footer-gallery-img {
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    /* An element's back face is a mirror image of its front face. */
+    backface-visibility: hidden;
+}
+
+.footer-gallery-img:hover {
+    transform: scale(1.3);
+    opacity: .7;
+}
+
+.footer-copyright {
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #111;
+    color: #aaa;
+    font-size: 1.3rem;
+    align-items: center;
+}
+
+.text-right i {
+    font-size: 2rem;
+    margin: 0 .5rem;
+    color: tomato;
+}
+
+.text-right a {
+    color: gold;
+    text-decoration: none;
+}
+/* end of footer */
+
+/* Responsive properties */
+/* First breakpoint is 1400px */
+@media(max-width: 1400px) {
+    .customers-cards-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .customer-card {
+        margin-bottom: 3rem;
+    }
+
+    .footer-main {
+        flex-wrap: wrap;
+    }
+
+    .footer-main > div {
+        flex-basis: 40%;
+    }
+}
+
+/* Second breakpoint is 1100px */
+@media(max-width: 1100px) {
+    .about-us {
+        flex-direction: column;
+        padding-bottom: 20rem;
+    }
+
+    .about-us-content {
+        margin-bottom: 25rem;
+    }
+}
+
+@media(max-width: 900px) {
+    .banner-heading {
+        text-align: center;
+    }
+
+    .footer-main {
+        flex-direction: column;
+    }
+
+    .footer-list {
+        display: flex;
+    }
+
+    .footer-list-item {
+        margin-right: 2rem;
+    }
+
+    .contact {
+        margin-bottom: 2rem;
+    }
+}
+
+@media(max-width: 750px) {
+    .footer-copyright {
+        flex-direction: column;
+    }
+
+    .copyright-text {
+        margin-bottom: 2rem;
+    }
+
+    .banner-heading {
+        font-size: 5rem;
+    }
+
+    .customer-card {
+        flex-direction: column;
+        width: 30rem;
+    }
+
+    .customer-image {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .footer-list {
+        flex-direction: column;
+    }
+
+    .image {
+        width: 20rem;
+    }
+
+    .about-us-paragraph {
+        margin: 5rem 0;
+    }
+}
+
+@media(max-width: 500px) {
+    .brand-heading {
+        font-size: 2rem;
+    }
+
+    .about-us {
+        padding: 10rem 5rem;
+    }
+
+    .banner {
+        height: 100%;
+        margin-top: -10rem;
+    }
+
+    .banner-heading {
+        font-size: 3rem;
+    }
+
+    .banner-paragraph {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .banner-btn {
+        width: 15rem;
+        font-size: 1.5rem;
+    }
+
+    .navigation {
+        width: 28rem;
+    }
+
+    .navigation-search-input {
+        width: 20rem;
+    }
+
+    .navigation-search-btn {
+        right: 2rem;
+    }
+
+    .about-us-content {
+        margin-bottom: 15rem;
+    }
+
+    .about-us-heading {
+        font-size: 3rem;
+    }
+
+    .about-us-content .subheading {
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    .image {
+        width: 15rem;
+    }
+
+    .image-wrapper {
+        width: 10rem;
+    }
+
+    .section-heading {
+        font-size: 2.5rem;
+    }
+
+    .section-header .short-underline {
+        width: 5rem;
+    }
+
+    .section-header .long-underline {
+        width: 12rem;
+    }
+
+    .room-price {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .customers-paragraph {
+        width: 80%;
+    }
+
+    .footer-input {
+        width: 18rem;
+    }
+
+    .room-card {
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
+
+    .room-card-heading {
+        font-size: 2rem;
+    }
+
+    .room-card-paragraph {
+        font-size: 1.2rem;
+    }
+
+    .room-card-btn {
+        width: 12rem;
+        font-size: 1.2rem;
+    }
+
+    .customer-card {
+        width: 25rem;
+    }
+    
+    .footer-main {
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
+    .footer-copyright {
+        text-align: center;
+    }
+}
